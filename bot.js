@@ -4,9 +4,18 @@ require('colors');
 
 const COMMAND_PREFIX = '!';
 
-clientLoader.createClient()
+clientLoader.createClient(['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'])
   .then(async (client) => {
     await commandLoader.load(client);
+
+    client.on('guildMemberAdd', async (member) => {
+      const guild = member.guild;
+      const role = await guild.roles.fetch('940638422584938606');
+      await member.roles.add(role);
+      // OU
+      await member.roles.add('940638422584938606');
+      // Le role à assigner doit etre placé en dessous du role du bot dans la liste des roles du serveur
+    })
 
     client.on('messageCreate', async (message) => {
       // Ne pas tenir compte des messages envoyés par les bots, ou qui ne commencent pas par le préfix
@@ -20,7 +29,7 @@ clientLoader.createClient()
 
       if (client.commands.has(commandName)) {
         // La commande existe, on la lance
-        client.commands.get('test').run(client, message, arguments);
+        client.commands.get(commandName).run(client, message, arguments);
       } else {
         // La commande n'existe pas, on prévient l'utilisateur
         await message.delete();
