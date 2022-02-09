@@ -15,5 +15,5 @@ module.exports.run = async (client, message, arguments) => {
     embeds: [ embed ]
   })
 };
-@
+
 module.exports.name = 'test';
