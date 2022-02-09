@@ -14,5 +14,5 @@ module.exports.run = async (client, message, arguments) => {
     await channel.send('The provided arguments were: ' + arguments.join(', '));
   }
 };
-
+@
 module.exports.name = 'test';
