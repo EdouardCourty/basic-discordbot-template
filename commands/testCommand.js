@@ -6,13 +6,14 @@ const Discord = require('discord.js');
  * @param {Array<String>} arguments
  */
 module.exports.run = async (client, message, arguments) => {
-  const channel = message.channel;
+  const embed = new Discord.MessageEmbed();
+  embed
+    .setTitle('Bonjour')
+    .setDescription('Bonjour');
 
-  await channel.send('Everything is working fine! :white_check_mark:');
-
-  if (arguments.length > 0) {
-    await channel.send('The provided arguments were: ' + arguments.join(', '));
-  }
+  message.channel.send({
+    embeds: [ embed ]
+  })
 };
 @
 module.exports.name = 'test';
