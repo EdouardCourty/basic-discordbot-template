@@ -1,8 +1,11 @@
 const clientLoader = require('./src/clientLoader');
 const commandLoader = require('./src/commandLoader');
+const MysqlConnector = require('./src/MySqlConnector');
+
 require('colors');
 
 const COMMAND_PREFIX = '!';
+MysqlConnector.connect();
 
 clientLoader.createClient(['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'])
   .then(async (client) => {
